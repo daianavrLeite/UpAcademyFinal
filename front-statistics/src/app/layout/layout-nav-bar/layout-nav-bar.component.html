@@ -1,0 +1,30 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <a href="#"><img style="width: 50px; margin-right: 80px; margin-left: 20px;" src="assets/imagens/logo_projecto.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item mr-4">
+          <a class="nav-link" [routerLink]="['/layout/layoutform']" routerLinkActive="active">Interactions</a>
+        </li>
+        <li class="nav-item mr-4" *ngIf="(tokenInfo['role'] == 'SuperUser' || tokenInfo['role'] == 'director')">
+          <a class="nav-link" href="#" [routerLink]="['/layout/clients&managers']" routerLinkActive="active">Clients & Managers</a>
+        </li>
+        <li class="nav-item mr-4" *ngIf="tokenInfo['role'] == 'director'">
+          <a class="nav-link" href="#"  [routerLink]="['/layout/statistics']" >Statistics</a>
+        </li>
+        <li class="nav-item mr-4" *ngIf="tokenInfo['role'] == 'director' || tokenInfo['role']== 'SuperUser'">
+          <a class="nav-link" href="#" [routerLink]="['/layout/dashboard']">Dashboard</a>
+        </li>
+        <li class="nav-item mr-4" *ngIf="tokenInfo['role'] == 'SuperUser'">
+          <a class="nav-link" href="#" [routerLinkActive]="['active']" [routerLink]="['/layout/create']">Create User</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <p id="welcomeMessage"><strong>Welcome <i>{{username}}</i></strong></p>
+        <button class="btn btn-outline-primary m-2 my-sm-1" type="submit" (click)="logOut()">Log out</button>
+      </form>
+    </div>
+  </nav>
